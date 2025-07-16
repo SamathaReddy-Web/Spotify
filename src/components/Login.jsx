@@ -24,7 +24,7 @@ const Login = () => {
   e.preventDefault();
   const userDetails = { username, password };
 
-  const url = "/apis/login";  
+  const url = "https://apis.ccbp.in/login";  
   const options = {
     method: 'POST',
     headers: {
@@ -36,10 +36,11 @@ const Login = () => {
     const response = await fetch(url, options);
     let data; 
 
-
+   
 
     if (response.ok) {
         data = await response.json(); // Try to parse JSON
+        console.log(data.jwt_token); // Log the token
 
       onSubmitSuccess(data.jwt_token);
     } else {
