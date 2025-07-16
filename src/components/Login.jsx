@@ -24,7 +24,7 @@ const Login = () => {
   e.preventDefault();
   const userDetails = { username, password };
 
-  const url = "https://apis.ccbp.in/login";  
+const url = 'https://apis.ccbp.in/login';
   const options = {
     method: 'POST',
     headers: {
