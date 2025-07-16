@@ -34,8 +34,13 @@ const Login = () => {
   };
   try {
     const response = await fetch(url, options);
-    const data = await response.json();
+    let data; 
+
+
+
     if (response.ok) {
+        data = await response.json(); // Try to parse JSON
+
       onSubmitSuccess(data.jwt_token);
     } else {
       setErrorMsg(data.error_msg);
