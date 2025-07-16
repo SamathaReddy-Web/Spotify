@@ -24,7 +24,12 @@ const Login = () => {
   e.preventDefault();
   const userDetails = { username, password };
 
-  const url = "https://apis.ccbp.in/login";  
+  const baseUrl = import.meta.env.PROD
+  ? 'https://apis.ccbp.in'
+  : '';
+
+  const url = `${baseUrl}/login`;
+  
   const options = {
     method: 'POST',
     headers: {
