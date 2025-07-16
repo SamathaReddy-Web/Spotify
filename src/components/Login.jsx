@@ -24,9 +24,10 @@ const Login = () => {
   e.preventDefault();
   const userDetails = { username, password };
 
-  const isDev = import.meta.env.DEV;
+  const isDev = window.location.hostname === 'localhost';
   const baseURL = isDev ? '/apis' : 'https://apis.ccbp.in';
   const url = `${baseURL}/login`;
+
 
   const options = {
     method: 'POST',
@@ -38,6 +39,8 @@ const Login = () => {
   try {
     const response = await fetch(url, options);
     let data;
+    console.log("Login API URL:", url);
+
 
     if (response.ok) {
       data = await response.json();
