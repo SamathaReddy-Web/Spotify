@@ -24,7 +24,7 @@ const Login = () => {
   e.preventDefault();
   const userDetails = { username, password };
 
-const url = 'https://apis.ccbp.in/login';
+  const url = "/apis/login";  
   const options = {
     method: 'POST',
     headers: {
@@ -34,14 +34,8 @@ const url = 'https://apis.ccbp.in/login';
   };
   try {
     const response = await fetch(url, options);
-    let data; 
-
-   
-
+    const data = await response.json();
     if (response.ok) {
-        data = await response.json(); // Try to parse JSON
-        console.log(data.jwt_token); // Log the token
-
       onSubmitSuccess(data.jwt_token);
     } else {
       setErrorMsg(data.error_msg);
@@ -126,8 +120,3 @@ export default Login;
 //    You’ll send it in every API call via header or let server read from cookie. Backend verifies the token before responding
 // 6. In order to make the user enter credentials apart from login page, Use a protected route component to wrap pages that need login
 // 7. User details --> React sent to server --> if right, responds with jwt token --> react saves in cookies 
-
-
-
-
-
