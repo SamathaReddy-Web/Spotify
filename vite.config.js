@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/apis': {
-        target: 'https://apis.ccbp.in/',
+        target: 'https://apis.ccbp.in',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/apis/, ''),
