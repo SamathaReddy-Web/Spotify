@@ -24,12 +24,10 @@ const Login = () => {
   e.preventDefault();
   const userDetails = { username, password };
 
-  const baseUrl = import.meta.env.PROD
-  ? 'https://apis.ccbp.in'
-  : '';
+  const isDev = import.meta.env.DEV;
+  const baseURL = isDev ? '/apis' : 'https://apis.ccbp.in';
+  const url = `${baseURL}/login`;
 
-  const url = `${baseUrl}/login`;
-  
   const options = {
     method: 'POST',
     headers: {
@@ -39,18 +37,20 @@ const Login = () => {
   };
   try {
     const response = await fetch(url, options);
-    const data = await response.json();
+    let data;
+
     if (response.ok) {
+      data = await response.json();
       onSubmitSuccess(data.jwt_token);
     } else {
+      data = await response.json();
       setErrorMsg(data.error_msg);
-      setUsername('')
-      setPassword('')
+      setUsername('');
+      setPassword('');
     }
   } catch (error) {
     console.error('Login failed:', error);
     setErrorMsg('Username or password is incorrect.');
-    
   }
 };
 
