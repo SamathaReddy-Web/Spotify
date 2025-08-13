@@ -10,21 +10,27 @@ import GenresAndMoods from './components/GenresAndMoods';
 import NotFound from './components/NotFound';
 import Failure from './components/Failure';
 import LikedSongs from './components/LikedSongs'
+import { LikedSongsProvider } from './context/LikedSongsContext';
 
 
 const App = () => {
   return (
-    <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path='/' element={<Home/>} />
-        <Route path="/playlist/:playlistId" element={<Playlist/>} />
-        <Route path="/album/:albumId" element={<AlbumDetails />} />
-        <Route path="/category/:categoryId" element={<CategoryPlaylists />} />
-        <Route path="/genres" element={<GenresAndMoods />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="failure" element={<Failure />} />
-        <Route path="/liked" element={<LikedSongs />} />
-    </Routes>
+    <>
+      <LikedSongsProvider>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path='/' element={<Home/>} />
+          <Route path="/playlist/:playlistId" element={<Playlist/>} />
+          <Route path="/album/:albumId" element={<AlbumDetails />} />
+          <Route path="/category/:categoryId" element={<CategoryPlaylists />} />
+          <Route path="/genres" element={<GenresAndMoods />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="failure" element={<Failure />} />
+          <Route path="/liked" element={<LikedSongs />} />
+        </Routes>
+        <Toaster position="top-center" />
+      </LikedSongsProvider>
+    </>
   )
 }
 export default App

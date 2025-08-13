@@ -204,7 +204,7 @@ const Playlist = () => {
                     if (track.preview_url) {
                       setCurrentSong(track);
                     } else {
-                      alert('Preview not available for this track.');
+                      toast.error('Preview not available for this track.');
                     }
                   }}
                 >

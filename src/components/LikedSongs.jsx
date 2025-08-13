@@ -1,34 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { useNavigate } from 'react-router-dom';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { useLikedSongs } from '../context/LikedSongsContext';
+
 
 const LikedSongs = () => {
   const navigate = useNavigate();
-  const [likedTracks, setLikedTracks] = useState([]);
+  const { likedTracks, toggleLike, isLiked } = useLikedSongs();
   const [currentTrack, setCurrentTrack] = useState(null);
 
-  useEffect(() => {
-    const storedTracks = localStorage.getItem('likedTracks');
-    if (storedTracks) {
-      setLikedTracks(JSON.parse(storedTracks));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedTracks = localStorage.getItem('likedTracks');
+  //   if (storedTracks) {
+  //     setLikedTracks(JSON.parse(storedTracks));
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem('likedTracks', JSON.stringify(likedTracks));
-  }, [likedTracks]);
+  // useEffect(() => {
+  //   localStorage.setItem('likedTracks', JSON.stringify(likedTracks));
+  // }, [likedTracks]);
 
-  const toggleLike = (track) => {
-    const exists = likedTracks.some((t) => t.id === track.id);
-    if (exists) {
-      setLikedTracks((prev) => prev.filter((t) => t.id !== track.id));
-    } else {
-      setLikedTracks((prev) => [...prev, track]);
-    }
-  };
+  // const toggleLike = (track) => {
+  //   const exists = likedTracks.some((t) => t.id === track.id);
+  //   if (exists) {
+  //     setLikedTracks((prev) => prev.filter((t) => t.id !== track.id));
+  //   } else {
+  //     setLikedTracks((prev) => [...prev, track]);
+  //   }
+  // };
 
-  const isLiked = (track) => likedTracks.some((t) => t.id === track.id);
+  // const isLiked = (track) => likedTracks.some((t) => t.id === track.id);
 
   return (
     <>
