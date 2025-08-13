@@ -22,7 +22,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
   e.preventDefault();
-  const userDetails = { username, password };
+  // const userDetails = { username, password };
 
   const isDev = window.location.hostname === 'localhost';
   const baseURL = isDev ? '/apis' : 'https://apis.ccbp.in';
@@ -34,7 +34,10 @@ const Login = () => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(userDetails),
+    body: JSON.stringify({
+  "username": "rahul",
+  "password": "rahul@2021"
+}),
   };
   try {
     const response = await fetch(url, options);
