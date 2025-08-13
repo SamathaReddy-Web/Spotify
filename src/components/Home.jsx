@@ -26,7 +26,7 @@ const Home = () => {
     const name = Cookies.get('user_name') || 'User';
     setUserName(name);
     if (!jwtToken) {
-      navigate('/login');
+      navigate('/');
       return;
     }
     fetchData();
